@@ -1,0 +1,241 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/timeshare-detail.css" />
+  </head>
+  <body>
+    <div class="main-information">
+      <div class="main-left">
+        <div class="rental-card">
+          <div class="rental-card-header">
+            <div class="resort-image image image-tilt_left hide-for-small-only">
+              <div
+                class="resort-frame-image background-cover"
+                style="
+                  background-image: url('https://shantira.com.vn/wp-content/uploads/2021/10/hinh-anh-shantira-moi-nhat-thang-10-2021.jpg');
+                "
+              ></div>
+            </div>
+            <div class="timeshare-title">
+              <h3>Quang Nam</h3>
+              <h2 class="timeshare-details-title">Shantira Beach Resort</h2>
+              <h4>
+                Lac Long Quan Street, Dien Duong Ward, Dien Ban District, Quang
+                Nam.
+              </h4>
+              <h4 style="color: red">2024/05/19 - 2024/05/29</h4>
+            </div>
+          </div>
+          <div class="rental-info">
+            <div>
+              <div class="info-section d-flex">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 640 512"
+                  class="icon"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z"
+                  ></path>
+                </svg>
+                <div
+                  style="
+                    padding: 0px 0.714286rem 1.42857rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    font-family: Roboto, Helvetica, Arial, sans-serif;
+                  "
+                >
+                  <p>3 Bedrooms</p>
+                  <p>Sleeps 8</p>
+                  <p>Beds: 3 King, 1 Sofa bed</p>
+                </div>
+              </div>
+              <div class="info-section d-flex">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  class="icon"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M32,384a95.4,95.4,0,0,0,32,71.09V496a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16V480H384v16a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16V455.09A95.4,95.4,0,0,0,480,384V336H32ZM496,256H80V69.25a21.26,21.26,0,0,1,36.28-15l19.27,19.26c-13.13,29.88-7.61,59.11,8.62,79.73l-.17.17A16,16,0,0,0,144,176l11.31,11.31a16,16,0,0,0,22.63,0L283.31,81.94a16,16,0,0,0,0-22.63L272,48a16,16,0,0,0-22.62,0l-.17.17c-20.62-16.23-49.83-21.75-79.73-8.62L150.22,20.28A69.25,69.25,0,0,0,32,69.25V256H16A16,16,0,0,0,0,272v16a16,16,0,0,0,16,16H496a16,16,0,0,0,16-16V272A16,16,0,0,0,496,256Z"
+                  ></path>
+                </svg>
+                <div
+                  style="
+                    padding: 0px 0.714286rem 1.42857rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    font-family: Roboto, Helvetica, Arial, sans-serif;
+                  "
+                >
+                  <p>2 Bathrooms</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="info-section d-flex">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 512 512"
+                  class="icon"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M55.379 25l-28.4 142H172.27L256 83.271 339.729 167H485.02l-28.4-142zM256 108.727L179.729 185H41v302h158v-87c0-18.25 7.166-33.077 18.021-42.727C227.877 347.624 242 343 256 343s28.123 4.624 38.979 14.273C305.834 366.923 313 381.75 313 400v87h158V185H332.271zm0 38.544l57 57V297H199v-92.729zm0 25.456l-39 39V279h78v-67.271zM71 199h98v98H71zm272 0h98v98h-98zM89 217v30h62v-30zm272 0v30h62v-30zM89 265v14h62v-14zm272 0v14h62v-14zM71 359h98v98H71v-98zm272 0h98v98h-98v-98zm-87 2c-10 0-19.877 3.376-27.021 9.727C221.834 377.077 217 386.25 217 400v87h78v-87c0-13.75-4.834-22.923-11.979-29.273C275.877 364.376 266 361 256 361zM89 377v62h62v-62zm272 0v62h62v-62z"
+                  ></path>
+                </svg>
+                <div
+                  style="
+                    padding: 0px 0.714286rem 1.42857rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    font-family: Roboto, Helvetica, Arial, sans-serif;
+                  "
+                >
+                  <p>3 Bedroom Villa</p>
+                  <p>Building/Unit: Unassigned</p>
+                  <p>View: Oceanfront</p>
+                </div>
+              </div>
+              <div class="info-section d-flex">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 416 512"
+                  class="icon"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M207.9 15.2c.8 4.7 16.1 94.5 16.1 128.8 0 52.3-27.8 89.6-68.9 104.6L168 486.7c.7 13.7-10.2 25.3-24 25.3H80c-13.7 0-24.7-11.5-24-25.3l12.9-238.1C27.7 233.6 0 196.2 0 144 0 109.6 15.3 19.9 16.1 15.2 19.3-5.1 61.4-5.4 64 16.3v141.2c1.3 3.4 15.1 3.2 16 0 1.4-25.3 7.9-139.2 8-141.8 3.3-20.8 44.7-20.8 47.9 0 .2 2.7 6.6 116.5 8 141.8.9 3.2 14.8 3.4 16 0V16.3c2.6-21.6 44.8-21.4 48-1.1zm119.2 285.7l-15 185.1c-1.2 14 9.9 26 23.9 26h56c13.3 0 24-10.7 24-24V24c0-13.2-10.7-24-24-24-82.5 0-221.4 178.5-64.9 300.9z"
+                  ></path>
+                </svg>
+                <div
+                  style="
+                    padding: 0px 0.714286rem 1.42857rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    font-family: Roboto, Helvetica, Arial, sans-serif;
+                  "
+                >
+                  <p>Full kitchen</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dl class="tabs">
+          <dd id="resortInfoTabHeader" class="">
+            <a href="/posting/R1171762/resort-info" data-select-tab="resortInfo"
+              >About the detail TimeShare</a
+            >
+          </dd>
+        </dl>
+        <div class="member-info-container">
+          <div class="rental-card-detail">
+            <div class="rental-card-header">
+              <div
+                class="resort-image image image-tilt_left hide-for-small-only"
+                style="
+                  background-color: rgba(0, 0, 0, 0.3);
+                  min-width: 11rem;
+                  min-height: 11rem;
+                  top: 0px;
+                  left: 0px;
+                "
+              >
+                <div
+                  class="resort-frame-image background-cover"
+                  style="
+                    background-image: url('https://shantira.com.vn/wp-content/uploads/2021/10/hinh-anh-shantira-moi-nhat-thang-10-2021.jpg');
+                    height: 11rem;
+                  "
+                ></div>
+              </div>
+              <div
+                class="timeshare-title"
+                style="text-align: left; margin-left: 20px"
+              >
+                <h3 class="timeshare-details-title">Shantira Beach Resort</h3>
+                <h5>
+                  Lac Long Quan Street, Dien Duong Ward, Dien Ban District,
+                  Quang Nam.
+                </h5>
+                <h4>
+                  Shantira Hoi An Resort &amp; Spa is a resort invested by
+                  VinaCapital Hoi An Tourism Company Limited with a scale of 8.6
+                  hectares in Dien Ban, Quang Nam. The project possesses a
+                  modern design style with open space including a condotel block
+                  and a sea-facing villa block, helping visitors freely immerse
+                  themselves in the natural landscape of the area. Project name:
+                  Shantira Beach Resort &amp; Spa Hoi An
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-right">
+        <div class="booking-card">
+          <div class="price-info">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 640 512"
+              class="money-icon"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M320 144c-53.02 0-96 50.14-96 112 0 61.85 42.98 112 96 112 53 0 96-50.13 96-112 0-61.86-42.98-112-96-112zm40 168c0 4.42-3.58 8-8 8h-64c-4.42 0-8-3.58-8-8v-16c0-4.42 3.58-8 8-8h16v-55.44l-.47.31a7.992 7.992 0 0 1-11.09-2.22l-8.88-13.31a7.992 7.992 0 0 1 2.22-11.09l15.33-10.22a23.99 23.99 0 0 1 13.31-4.03H328c4.42 0 8 3.58 8 8v88h16c4.42 0 8 3.58 8 8v16zM608 64H32C14.33 64 0 78.33 0 96v320c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V96c0-17.67-14.33-32-32-32zm-16 272c-35.35 0-64 28.65-64 64H112c0-35.35-28.65-64-64-64V176c35.35 0 64-28.65 64-64h416c0 35.35 28.65 64 64 64v160z"
+              ></path></svg
+            ><span class="price">$9583</span>
+          </div>
+          <div class="terms-and-conditions">
+            <label for="termsCheckbox" class="terms-checkbox"
+              ><span id="rentalAgreement"
+                >I have read the
+                <a class="agreement-link" href="/agreement">Rental Agreement</a
+                >, and agree to all <span class="nowrap">terms.</span></span
+              ><input type="checkbox" id="termsCheckbox" checked=""
+            /></label>
+          </div>
+          <button class="btn-request accept">BOOKING</button>
+          <hr />
+          <div class="poster-info">
+            <div class="poster-avatar">KC</div>
+            <div class="poster-details">
+              <span class="poster-name"
+                >Posted by
+                <p style="margin-left: 3px; color: rgb(231, 76, 60)">
+                  owner
+                </p></span
+              ><span class="member-since">Member since 2023</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

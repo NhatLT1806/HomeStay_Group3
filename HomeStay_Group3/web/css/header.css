@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header.navbarHeader.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f2f0ed;
+  padding: 0 1%;
+}
+header.navbarHeader.flex ul li.loginItem,
+header.navbarHeader.flex ul li.registerItem {
+  padding: 4px 10px;
+  margin: 0 8px; /* Thêm khoảng cách giữa các liên kết */
+  border: 1px solid #0091b3; /* Đường viền */
+  border-radius: 5px; /* Góc bo */
+}
+
+header.navbarHeader.flex ul li.loginItem a,
+header.navbarHeader.flex ul li.registerItem a {
+  text-decoration: none;
+  color: #0091b3; /* Màu chữ */
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+header.navbarHeader.flex ul li.loginItem:hover,
+header.navbarHeader.flex ul li.registerItem:hover {
+  background-color: #0091b3; /* Màu nền khi di chuột qua */
+}
+header.navbarHeader.flex ul li.loginItem:hover a,
+header.navbarHeader.flex ul li.registerItem:hover a {
+  color: #fff !important; /* Màu chữ khi di chuột qua */
+}
+/* action button  */
+.actionNavbarbutton {
+  display: none;
+}
+
+/* nav item */
+header.navbarHeader.flex ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+header.navbarHeader.flex ul li {
+  padding: 4px 10px;
+}
+
+header.navbarHeader.flex ul li a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+header.navbarHeader.flex ul li a:hover {
+  color: #0091b3;
+}
+
+section.navBarSection > header > div.navBar > ul > button > a {
+  color: #fff;
+  text-decoration: none;
+}
+
+section.navBarSection > header > div.navBar > ul > button {
+  outline: none;
+  border: none;
+  background-color: #0091b3;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+/* logo */
+a.navbarLogo.flex {
+  text-decoration: none;
+  color: #000000;
+  font-size: 20px;
+}
+
+a.navbarLogo.flex h1 {
+  display: flex;
+  align-items: center;
+}
+/* CSS */
+.logoDiv {
+  display: flex;
+  align-items: center;
+}
+
+.navbarLogo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  border-radius: 50%;
+  width: 40px; /* Điều chỉnh kích thước của hình ảnh logo tùy ý */
+  height: 40px; /* Điều chỉnh kích thước của hình ảnh logo tùy ý */
+  margin-right: 10px; /* Điều chỉnh khoảng cách giữa hình ảnh logo và chữ */
+}

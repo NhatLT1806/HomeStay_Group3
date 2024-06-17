@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/login.css">
+  </head>
+  <body>
+    <div class="loginForm">
+      <div class="flexForm">
+        <h1>Sign In</h1>
+        <div class="socialNetwork">
+          <button class="fbButton">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M426.8 64H85.2C73.5 64 64 73.5 64 85.2v341.6c0 11.7 9.5 21.2 21.2 21.2H256V296h-45.9v-56H256v-41.4c0-49.6 34.4-76.6 78.7-76.6 21.2 0 44 1.6 49.3 2.3v51.8h-35.3c-24.1 0-28.7 11.4-28.7 28.2V240h57.4l-7.5 56H320v152h106.8c11.7 0 21.2-9.5 21.2-21.2V85.2c0-11.7-9.5-21.2-21.2-21.2z"
+              ></path></svg
+            >SIGN IN WITH FACEBOOK</button
+          ><button class="ggButton">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M457.6 224l-2.1-8.9H262V297h115.6c-12 57-67.7 87-113.2 87-33.1 0-68-13.9-91.1-36.3-23.7-23-38.8-56.9-38.8-91.8 0-34.5 15.5-69 38.1-91.7 22.5-22.6 56.6-35.4 90.5-35.4 38.8 0 66.6 20.6 77 30l58.2-57.9c-17.1-15-64-52.8-137.1-52.8-56.4 0-110.5 21.6-150 61C72.2 147.9 52 204 52 256s19.1 105.4 56.9 144.5c40.4 41.7 97.6 63.5 156.5 63.5 53.6 0 104.4-21 140.6-59.1 35.6-37.5 54-89.4 54-143.8 0-22.9-2.3-36.5-2.4-37.1z"
+              ></path></svg
+            >SIGN IN WITH GOOGLE
+          </button>
+        </div>
+        <div class="dividerSocial"></div>
+        <form>
+          <div class="textField"><label>Username or Email</label><input /></div>
+          <div class="textField">
+            <label>Password</label><input type="password" />
+          </div>
+          <div class="flexAction">
+            <div class="checkboxField">
+              <label><input type="checkbox" />Keep me signed in</label>
+            </div>
+            <a href="/forgot-password">Forgot Password?</a>
+          </div>
+          <button>SIGN IN</button>
+        </form>
+      </div>
+      <span class="divider"></span>
+      <div class="registerForm">
+        <h3>Don't have an account?</h3>
+        <a href="/register"
+          ><button class="registerButton">SIGN UP HERE</button></a
+        >
+      </div>
+    </div>
+  </body>
+</html>

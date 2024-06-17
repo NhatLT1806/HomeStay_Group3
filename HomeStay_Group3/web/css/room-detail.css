@@ -1,0 +1,423 @@
+ section.main.container.section > div.secTitle > h3 {
+  flex-grow: 1000;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 400;
+  color: rgb(34, 34, 34);
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+/* grid */
+.main .secContent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* item */
+.singleDestination {
+  width: 300px;
+  position: relative;
+  margin: 3% auto;
+  text-align: center;
+  box-shadow: 0 0.0714285714rem 0.2142857143rem 0 rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 20px 4px;
+  min-height: 25rem;
+  max-height: 320px;
+}
+
+/* image */
+.secContent .imageDiv img {
+  width: 280px;
+  height: 200px;
+}
+
+/* cardbody  */
+
+.cardInfo {
+  text-align: left;
+  padding: 0 10px;
+}
+
+.cardInfo .desc {
+  margin: 6px 0 12px;
+}
+.continent.flex {
+  display: flex;
+  align-items: center;
+}
+
+.cardInfo .desc p {
+  max-height: 80px;
+  height: 80px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  line-height: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.cardBody-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardInfo h1,
+.cardInfo h5,
+.cardInfo p {
+  margin: 0;
+}
+
+.cardInfo h1.destTitle {
+  max-height: 30px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.cardInfo .continent.flex span.name {
+  max-height: 25px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+/* action relax and price */
+.grade span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* button  */
+.cardInfo .btn.flex {
+  background-color: #0091b3;
+  border-color: #00748f;
+  color: #fff !important;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 0;
+  border-style: solid;
+  border-width: 0;
+  cursor: pointer;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: 8px;
+  width: 100%;
+}
+
+.fees.flex {
+  display: flex;
+}
+
+/* label  */
+.new-ribbon {
+  text-transform: uppercase;
+  position: absolute;
+  top: 1rem;
+  z-index: 1;
+  width: auto;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  white-space: nowrap;
+  height: 2rem;
+  padding: 0 0.625rem;
+  background: #0091b3;
+  right: auto;
+  background: #f44336;
+  left: -0.5rem;
+}
+
+.new-ribbon.secondary:before {
+  border-color: #ba160a #ba160a transparent transparent;
+}
+
+.new-ribbon:before {
+  right: auto;
+  left: 0;
+}
+
+.new-ribbon:before {
+  bottom: -0.5rem;
+  border: 0.25rem solid transparent;
+}
+
+.new-ribbon:before,
+.new-ribbon:after {
+  position: absolute;
+  content: "";
+}
+
+.new-ribbon:after {
+  border-width: 1rem 0.5rem;
+}
+
+.new-ribbon:after {
+  -webkit-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+  -moz-transform: scale(0.9999);
+  top: 0;
+  border: 1rem solid transparent;
+}
+
+@media only screen and (max-width: 1550px) {
+  .main .secContent {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .main .secContent {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+ section.home > div.homeContent.container {
+  background-image: url("https://images.alphacoders.com/269/269623.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* height: 24rem; */
+  margin-bottom: -4.4rem;
+  padding-top: calc(24rem / 2);
+}
+
+ section.home > div.homeContent.container > div.textDiv > h1 {
+  text-align: center;
+  color: #fff;
+}
+
+/* element in banner */
+ section.home > div.homeContent.container > div {
+  background: rgba(1, 1, 1, 0.6);
+  height: 19rem;
+  max-height: 19rem;
+}
+
+.hero-image_quote {
+  margin: 0 auto;
+  max-width: 62.5rem;
+  display: table;
+}
+
+.hero-image_quote-photo {
+  display: table-cell;
+  float: none !important;
+  vertical-align: middle;
+  box-shadow: 0 0.0714285714rem 0.2142857143rem 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  display: inline-table;
+  margin: 0;
+  padding: 0.4285714286rem;
+  position: relative;
+  -webkit-margin-after: 0;
+  -webkit-margin-before: 0;
+  -webkit-transform: rotate(-2.5deg);
+  -ms-transform: rotate(-2.5deg);
+  -o-transform: rotate(-2.5deg);
+  transform: rotate(-2.5deg);
+  width: 16.6666666667%;
+  right: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image_quote-photo,
+.hero-image_quote-text,
+.hero-image_quote-author-container {
+  display: table-cell;
+  float: none !important;
+  vertical-align: middle;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  width: 16.6666666667%;
+}
+
+.hero-image_quote-photo:before {
+  bottom: -1.0714285714rem;
+  left: -0.3571428571rem;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.hero-image_quote-photo img {
+  display: block;
+  width: 100%;
+}
+
+.hero-image_quote-photo:after {
+  background-position: -100px -150px;
+  top: -1.0714285714rem;
+  right: -0.3571428571rem;
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.hero-image_quote-photo:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid #b19e81;
+  z-index: 1;
+}
+
+.hero-image_quote-text {
+  position: relative;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  width: 66.6666666667%;
+  left: auto;
+  float: left;
+  font-style: italic;
+  border-left: 0;
+  margin-top: 1.25rem;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  display: table-cell;
+  float: none !important;
+  vertical-align: middle;
+}
+
+.hero-image_quote-author-container {
+  display: table-cell;
+  float: none !important;
+  vertical-align: middle;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  width: 16.6666666667%;
+  margin-bottom: 5%;
+}
+
+.hero-image_quote-author {
+  font-weight: 200;
+  font-family: "Handlee", cursive;
+  line-height: 1em;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.hero-image_quote-date {
+  color: #fff;
+}
+.hero-image_quote-date {
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.hero-image_quote-photo:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid #b19e81;
+  z-index: 1;
+}
+
+/* searchbox */
+ section.home > div.searchBox {
+  box-shadow: 0 0.0714285714rem 0.2142857143rem 0 rgba(0, 0, 0, 0.2);
+  margin: 0 auto 1.5rem;
+  background: #fff;
+  padding: 1.0714285714rem;
+  position: relative;
+  max-width: 70rem;
+}
+
+ section.home > div.searchBox > div.cardDiv.grid.aos-init.aos-animate {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* item in searchbox */
+section.home
+  > div.searchBox
+  > div.cardDiv.grid.aos-init.aos-animate
+  > div.Price
+  > div.label_total.flex {
+  display: flex;
+  align-items: center;
+}
+
+.homeFooterIcons.flex {
+  display: none;
+}
+
+/* action button  */
+.buttonFilterAction {
+  background-color: #0091b3;
+  border-color: #00748f;
+  color: #fff !important;
+  text-align: center;
+  text-decoration: none;
+  width: 16.7%;
+  border-radius: 0;
+  border-style: solid;
+  border-width: 0;
+  cursor: pointer;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.destinationInput,
+.dateInput,
+.Price {
+  width: 28%;
+}
+
+section.home
+  > div.searchBox
+  > div.cardDiv.grid.aos-init.aos-animate
+  > div.Price
+  > div.label_total.flex
+  > p {
+  margin: 0;
+}
+
+.searchBox input {
+  margin-top: 8px;
+  padding: 0 10px;
+}
+.searchBox label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.searchBox .input.flex input {
+  height: 40px;
+  font-size: 16px;
+  width: 250px;
+}
