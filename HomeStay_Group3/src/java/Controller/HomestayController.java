@@ -87,6 +87,7 @@ public class HomestayController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
     private void PostHomeStay(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession();
