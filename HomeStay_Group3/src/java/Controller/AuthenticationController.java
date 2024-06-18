@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.AuthenticationDAO;
+import DAO.HomestayDAO;
 import Model.CreateModel.UserSignUp;
 import Model.Homestay;
 import Model.User;
@@ -37,6 +38,7 @@ public class AuthenticationController extends HttpServlet {
         HttpSession session = request.getSession(true);
         String url = HOME_PAGE;
         String action = request.getParameter("action") == null ? "" : request.getParameter("action");
+        loadHomePage(request, response);
         switch (action) {
             case "login":
                 url = AUTHEN_PAGE;
@@ -61,8 +63,7 @@ public class AuthenticationController extends HttpServlet {
                 break;
             case "register":
                 // chuc nang dang ki
-                
-                
+
                 Register(request, response);
                 break;
             case "verify-otp":
@@ -183,5 +184,24 @@ public class AuthenticationController extends HttpServlet {
         }
     }
 
-    
+    private void loadHomePage(HttpServletRequest request, HttpServletResponse response) {
+//        HttpSession session = request.getSession(true);
+
+        String indexS = request.getParameter("index");
+        if (indexS == null) {
+            indexS = "1";
+        }
+        int index = Integer.parseInt(indexS);
+        HomestayDAO homestayDAO = new HomestayDAO();
+        List<Homestay> listHomeStay = homestayDAO.getAll_HomePage(index);
+        int total = homestayDAO.getTotalHomePage();
+        int lastPage = total / 12;
+        if (total % 12 != 0) {
+            lastPage++;
+        }
+        request.setAttribute("endP", lastPage);
+        request.setAttribute("selectedPage", index);
+        request.setAttribute("HOMESTAY", listHomeStay);
+    }
+
 }

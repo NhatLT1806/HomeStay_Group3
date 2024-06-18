@@ -19,10 +19,6 @@ import jakarta.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
 
-/**
- *
- * @author Datnt
- */
 @MultipartConfig
 public class HomestayController extends HttpServlet {
 
