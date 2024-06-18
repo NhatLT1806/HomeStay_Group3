@@ -73,9 +73,7 @@ public class ProfileController extends HttpServlet {
                 case "changePassword":
                     changePassword(request, response);
                     break;
-//                case "setNewPassword":
-//                    setNewPassword(request, response);
-//                    break;
+
             }
         } else {
             response.sendRedirect("views/common/sign-in.jsp");
