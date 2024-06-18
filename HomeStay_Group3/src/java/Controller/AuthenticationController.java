@@ -185,7 +185,7 @@ public class AuthenticationController extends HttpServlet {
     }
 
     private void loadHomePage(HttpServletRequest request, HttpServletResponse response) {
-//        HttpSession session = request.getSession(true);
+
 
         String indexS = request.getParameter("index");
         if (indexS == null) {
