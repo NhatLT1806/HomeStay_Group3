@@ -24,6 +24,10 @@
         <servlet-name>ManageHomestayController</servlet-name>
         <servlet-class>Controller.Admin.ManageHomestayController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookingController</servlet-name>
+        <servlet-class>Controller.BookingController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AuthenticationController</servlet-name>
         <url-pattern>/auth</url-pattern>
@@ -47,5 +51,9 @@
     <servlet-mapping>
         <servlet-name>ManageHomestayController</servlet-name>
         <url-pattern>/manage-homestay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingController</servlet-name>
+        <url-pattern>/book</url-pattern>
     </servlet-mapping>
 </web-app>

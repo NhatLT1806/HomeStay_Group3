@@ -22,11 +22,15 @@
                     <div class="dividerSocial"></div>
 
                     <div class="textField">
-                        <label>Homestay Name</label><input type="text" name="name" /><span class="error"></span>
+                        <label>Homestay Name</label>
+                        <input type="text" name="name" />
+                        <span class="error"></span>
                     </div>
 
                     <div class="textField">
-                        <label>Address</label><input name="address" type="text" /><span class="error"></span>
+                        <label>Address</label>
+                        <input name="address" type="text" />
+                        <span class="error"></span>
                     </div>
 <!--                    <div class="textField">
                         <label>Category</label >
@@ -38,6 +42,7 @@
                     </div>-->
                     <div class="textField">
                         <label>Description</label>
+                        
                         <textarea id="description" name="description" style="height: 150px"></textarea>
                         <span class="error"></span>
                     </div>

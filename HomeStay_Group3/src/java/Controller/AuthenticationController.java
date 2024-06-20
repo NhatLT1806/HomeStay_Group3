@@ -62,8 +62,6 @@ public class AuthenticationController extends HttpServlet {
                 Login(request, response);
                 break;
             case "register":
-                // chuc nang dang ki
-
                 Register(request, response);
                 break;
             case "verify-otp":
@@ -113,6 +111,7 @@ public class AuthenticationController extends HttpServlet {
             } else {
                 request.setAttribute("ERRORMESSAGE", "Sai tên đăng nhập hoặc tài khoản, vui lòng thử lại!");
             }
+            loadHomePage(request, response);
             request.getRequestDispatcher(url).forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
@@ -185,16 +184,26 @@ public class AuthenticationController extends HttpServlet {
     }
 
     private void loadHomePage(HttpServletRequest request, HttpServletResponse response) {
-
-
+        HttpSession session = request.getSession(true);
         String indexS = request.getParameter("index");
+        String searchS = request.getParameter("search");
         if (indexS == null) {
             indexS = "1";
         }
+        if (searchS == null) {
+            searchS = "";
+        }
         int index = Integer.parseInt(indexS);
+
         HomestayDAO homestayDAO = new HomestayDAO();
         List<Homestay> listHomeStay = homestayDAO.getAll_HomePage(index);
         int total = homestayDAO.getTotalHomePage();
+
+        if (searchS != "") {
+            total = homestayDAO.getAll_HomePageSearchTotal(searchS);
+            listHomeStay = homestayDAO.getAll_HomePageSearch(index, searchS);
+            request.setAttribute("search", searchS);
+        }
         int lastPage = total / 12;
         if (total % 12 != 0) {
             lastPage++;

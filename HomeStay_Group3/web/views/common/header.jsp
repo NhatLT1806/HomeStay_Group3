@@ -6,7 +6,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-        
+
         <title>Document</title>
     </head>
     <body>
@@ -30,11 +30,18 @@
                         </li>
                         <li class="navbarItem">
                             <a class="nav-link" href="homestay?action=view-own-homestay"
+                               >Manage Homestay</a
+                            >
+                        </li>
+                        <li class="navbarItem">
+                            <a class="nav-link" href="book?action=view-room-booking"
                                >Manage Booking</a
                             >
                         </li>
                         <li class="navbarItem">
-                            <a class="nav-link" href="/faqs">How it works</a>
+                            <a class="nav-link" href="book?action=view-booking-history"
+                               >Booking History</a
+                            >
                         </li>
                         <c:choose>
                             <c:when test="${USER != null}">

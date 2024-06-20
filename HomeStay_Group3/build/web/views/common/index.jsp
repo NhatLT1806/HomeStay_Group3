@@ -37,7 +37,14 @@
                 .pagination a:hover:not(.active) {
                     background-color: #ddd;
                 }
-
+                .searchBox {
+                    box-shadow: 0 0.0714285714rem 0.2142857143rem 0 rgba(0, 0, 0, 0.2);
+                    margin: 0 auto 1.5rem;
+                    background: #fff;
+                    padding: 1.0714285714rem;
+                    position: relative;
+                    max-width: 70rem;
+                }
             </style>
     </head>
     <body>
@@ -76,8 +83,10 @@
                     </div>
                 </div>
             </div>
+            <!--<form>-->
             <div class="searchBox">
-                <div data-aos="fade-up" class="cardDiv grid aos-init aos-animate">
+                <form action="auth" style="display: flex; justify-content: space-between" data-aos="fade-up" class="cardDiv grid aos-init aos-animate">
+                
                     <div class="destinationInput">
                         <label for="city">
                             <svg
@@ -114,8 +123,8 @@
                             <input
                                 type="text"
                                 placeholder="Enter name here...."
-                                name="timeshareName"
-                                value=""
+                                name="search"
+                                value="${search}"
                                 />
                         </div>
                     </div>
@@ -157,7 +166,7 @@
                                 />
                         </div>
                     </div>
-                    <div class="Price">
+<!--                    <div class="Price">
                         <div class="label_total flex">
                             <svg
                                 stroke="currentColor"
@@ -198,7 +207,7 @@
                                 value="0"
                                 />
                         </div>
-                    </div>
+                    </div>-->
                     <button class="buttonFilterAction">SEARCH</button>
                 </div>
                 <div
@@ -307,8 +316,10 @@
                             <path d="M17 4l0 6"></path>
                         </svg>
                     </div>
-                </div>
+                </form>
             </div>
+
+            <!--</form>-->
         </section>
 
         <section class="main container section">
@@ -422,25 +433,25 @@
                     </li>
                 </c:when>
                 <c:otherwise>
-                    <li class="page-item"><a class="page-link" href="league?action=listLeague&search=${search}&index=${selectedPage-1}">«</a></li>
+                    <li class="page-item"><a class="page-link" href="auth?&search=${search}&index=${selectedPage-1}">«</a></li>
                     </c:otherwise>
                 </c:choose>
                 <c:forEach var="i" begin="1" end="${endP}">
-              <a class="page-link ${i == selectedPage ? "active" : "" }" href="league?action=listLeague&search=${search}&index=${i}">${i}</a> 
-                    </c:forEach>
-                    <c:choose>
-                        <c:when test ="${selectedPage >= endP}">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">»</a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li class="page-item"><a class="page-link" href="league?action=listLeague&search=${search}&index=${selectedPage+1}">»</a></li>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
+                <a class="page-link ${i == selectedPage ? "active" : "" }" href="auth?search=${search}&index=${i}">${i}</a> 
+            </c:forEach>
+            <c:choose>
+                <c:when test ="${selectedPage >= endP}">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">»</a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="auth?search=${search}&index=${selectedPage+1}">»</a></li>
+                    </c:otherwise>
+                </c:choose>
+        </div>
 
-                    </div>
-                    <jsp:include page="footer.jsp" />
-                    </body>
-                    </html>
+        </div>
+        <jsp:include page="footer.jsp" />
+    </body>
+</html>

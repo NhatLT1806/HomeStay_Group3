@@ -6,16 +6,19 @@ package DAO;
 
 import DAL.DBContext;
 import Model.Category;
-import Model.Homestay;
 import Model.Room;
+import Model.ViewModel.BookingVM;
 import Model.ViewModel.RoomServiceVM;
 import jakarta.servlet.http.Part;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -111,7 +114,7 @@ public class RoomDAO {
                 room.setName(rs.getString("Name"));
                 room.setPrice(rs.getFloat("Price"));
                 room.setHomestayId(rs.getInt("HomeStayId"));
-                room.setMaxParticipants(rs.getInt("MaxParticipant"));      
+                room.setMaxParticipants(rs.getInt("MaxParticipant"));
                 room.setStatus(rs.getInt("Status"));
                 byte[] imageByte = rs.getBytes("Image");
                 String imageBase64 = Base64.getEncoder().encodeToString(imageByte);
@@ -205,7 +208,180 @@ public class RoomDAO {
         return false;
     }
 
+    public boolean BookingRoom(int roomId, int UserId) {
+        try {
+            String sql = "INSERT INTO Booking_Request (CreateAt, RoomId, BookBy, Status) VALUES (?, ?, ?, ?)";
+            ps = con.prepareStatement(sql);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String currentDate = dateFormat.format(date);
+            ps.setString(1, currentDate);
+            ps.setFloat(2, roomId);
+            ps.setInt(3, UserId);
+            ps.setInt(4, 0);
+            int affectedRow = ps.executeUpdate();
+            return affectedRow > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Cannot Post HomeStay");
+        }
+        return false;
+    }
+
+    public List<BookingVM> getListRequestToOwner(int ownerId) {
+        try {
+            List<BookingVM> listBookingVM = new ArrayList<>();
+            String sql = "SELECT "
+                    + "br.RequestId, "
+                    + "br.CreateAt, "
+                    + "br.Status, "
+                    + "r.Name, "
+                    + "r.Price,"
+                    + "r.RoomId, "
+                    + "r.Image, "
+                    + "u.UserName AS BookedByUserName, "
+                    + "u.Email AS BookedByEmail, "
+                    + "u.Phone AS BookedByPhone, "
+                    + "o.UserName AS OwnerName, "
+                    + "o.Email AS OwnerEmail, "
+                    + "o.Phone AS OwnerPhone "
+                    + "FROM Booking_Request br "
+                    + "JOIN Room r ON br.RoomId = r.RoomId "
+                    + "JOIN [User] u ON br.BookBy = u.UserId "
+                    + "JOIN [Homestay] h ON r.HomeStayId = h.HomestayId "
+                    + "JOIN [User] o ON br.BookBy = o.UserId "
+                    + "WHERE h.UserId = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ownerId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                BookingVM bookingInfo = new BookingVM();
+                bookingInfo.setRequestId(rs.getInt("RequestId"));
+                bookingInfo.setCreateAt(rs.getString("CreateAt"));
+                bookingInfo.setStatus(rs.getInt("Status"));
+                bookingInfo.setRoomName(rs.getString("Name"));
+                bookingInfo.setPrice(rs.getFloat("Price"));
+                bookingInfo.setRoomId(rs.getInt("RoomId"));
+                byte[] imgData = rs.getBytes("Image");
+                String base64Image = null;
+                if (imgData != null) {
+                    base64Image = Base64.getEncoder().encodeToString(imgData);
+                }
+                bookingInfo.setRoomImage(base64Image);
+
+                bookingInfo.setBookedByUserName(rs.getString("BookedByUserName"));
+                bookingInfo.setBookedByEmail(rs.getString("BookedByEmail"));
+                bookingInfo.setBookedByPhone(rs.getString("BookedByPhone"));
+                bookingInfo.setOwnerName(rs.getString("OwnerName"));
+                bookingInfo.setOwnerEmail(rs.getString("OwnerEmail"));
+                bookingInfo.setOwnerPhone(rs.getString("OwnerPhone"));
+                listBookingVM.add(bookingInfo);
+            }
+            return listBookingVM;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<BookingVM> getListRequestToBooker(int booker) {
+        try {
+            List<BookingVM> listBookingVM = new ArrayList<>();
+            String sql = "SELECT "
+                    + "br.RequestId, "
+                    + "br.CreateAt, "
+                    + "br.Status, "
+                    + "r.Name, "
+                    + "r.Price,"
+                    + "r.RoomId, "
+                    + "r.Image, "
+                    + "u.UserName AS BookedByUserName, "
+                    + "u.Email AS BookedByEmail, "
+                    + "u.Phone AS BookedByPhone, "
+                    + "o.UserName AS OwnerName, "
+                    + "o.Email AS OwnerEmail, "
+                    + "o.Phone AS OwnerPhone "
+                    + "FROM Booking_Request br "
+                    + "JOIN Room r ON br.RoomId = r.RoomId "
+                    + "JOIN [User] u ON br.BookBy = u.UserId "
+                    + "JOIN [Homestay] h ON r.HomeStayId = h.HomestayId "
+                    + "JOIN [User] o ON br.BookBy = o.UserId "
+                    + "WHERE br.BookBy = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, booker);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                BookingVM bookingInfo = new BookingVM();
+                bookingInfo.setRequestId(rs.getInt("RequestId"));
+                bookingInfo.setCreateAt(rs.getString("CreateAt"));
+                bookingInfo.setStatus(rs.getInt("Status"));
+                byte[] imgData = rs.getBytes("Image");
+                String base64Image = null;
+                if (imgData != null) {
+                    base64Image = Base64.getEncoder().encodeToString(imgData);
+                }
+                bookingInfo.setRoomImage(base64Image);
+                bookingInfo.setRoomName(rs.getString("Name"));
+                bookingInfo.setPrice(rs.getFloat("Price"));
+                bookingInfo.setRoomId(rs.getInt("RoomId"));
+                bookingInfo.setBookedByUserName(rs.getString("BookedByUserName"));
+                bookingInfo.setBookedByEmail(rs.getString("BookedByEmail"));
+                bookingInfo.setBookedByPhone(rs.getString("BookedByPhone"));
+                bookingInfo.setOwnerName(rs.getString("OwnerName"));
+                bookingInfo.setOwnerEmail(rs.getString("OwnerEmail"));
+                bookingInfo.setOwnerPhone(rs.getString("OwnerPhone"));
+                listBookingVM.add(bookingInfo);
+            }
+            return listBookingVM;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean ConfirmBooking(int requestId, int roomId) {
+        try {
+            String sql = "UPDATE [Booking_Request] SET Status = 1 WHERE RequestId = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, requestId);
+            int afftecRow = ps.executeUpdate();
+            if (afftecRow > 0) {
+                sql = "UPDATE [Room] SET Status = 2 WHERE RoomId = ?";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, roomId);
+                afftecRow = ps.executeUpdate();
+                return afftecRow > 0;
+            };
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean RejectBooking(int requestId, int roomId) {
+        try {
+            String sql = "UPDATE [Booking_Request] SET Status = 2 WHERE RequestId = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, requestId);
+            int afftecRow = ps.executeUpdate();
+            if (afftecRow > 0) {
+                sql = "UPDATE [Room] SET Status = 3 WHERE RoomId = ?";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, roomId);
+                return afftecRow > 0;
+            };
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         RoomDAO roomDAO = new RoomDAO();
+        List<RoomServiceVM> list = roomDAO.GetRoomService(7);
+        for (RoomServiceVM roomServiceVM : list) {
+            System.out.println(roomServiceVM.toString());
+        }
     }
+
 }

@@ -19,7 +19,10 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ *
+ * @author Datnt
+ */
 public class HomestayDAO {
 
     private Connection con;
@@ -42,8 +45,10 @@ public class HomestayDAO {
                     + " VALUES (?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
             ps.setString(1, homestay.getName());
+
             InputStream fileContent = homeStayImage.getInputStream();
             ps.setBinaryStream(2, fileContent, (int) homeStayImage.getSize());
+
             ps.setString(3, homestay.getAddress());
             ps.setInt(4, homestay.getStatus());
             ps.setInt(5, homestay.getUserId());
@@ -78,9 +83,60 @@ public class HomestayDAO {
     public List<Homestay> getAll_HomePage(int index) {
         try {
             List<Homestay> listHomeStay = new ArrayList<>();
+            // status = 0;
+            // 
             String sql = "SELECT * FROM Homestay WHERE Status = 1 ORDER BY CreateAt DESC OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
             ps = con.prepareStatement(sql);
             ps.setInt(1, (index - 1) * 12);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Homestay homestay = new Homestay();
+                homestay.setHomestayId(rs.getInt("HomestayId"));
+                homestay.setAddress(rs.getString("Address"));
+                homestay.setDescription(rs.getString("Description"));
+                homestay.setName(rs.getString("Name"));
+                homestay.setStatus(rs.getInt("Status"));
+                byte[] imageByte = rs.getBytes("Image");
+                String imageBase64 = Base64.getEncoder().encodeToString(imageByte);
+                homestay.setImage(imageBase64);
+                listHomeStay.add(homestay);
+            }
+            return listHomeStay;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int getAll_HomePageSearchTotal(String search) {
+        try {
+            List<Homestay> listHomeStay = new ArrayList<>();
+            // status = 0;
+            // 
+            String sql = "SELECT COUNT(*) FROM Homestay WHERE Status = 1 AND Name LIKE ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + search + "%");
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<Homestay> getAll_HomePageSearch(int index, String search) {
+        try {
+            List<Homestay> listHomeStay = new ArrayList<>();
+            // status = 0;
+            // 
+            String sql = "SELECT * FROM Homestay WHERE Status = 1 AND Name LIKE ? ORDER BY CreateAt DESC OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + search + "%");
+            ps.setInt(2, (index - 1) * 12);
+
             rs = ps.executeQuery();
             while (rs.next()) {
                 Homestay homestay = new Homestay();
@@ -196,7 +252,7 @@ public class HomestayDAO {
         return null;
     }
 
-       public List<Homestay> getHomeStayWaitToConfirm(int index) {
+    public List<Homestay> getHomeStayWaitToConfirm(int index) {
         try {
             List<Homestay> listHomeStay = new ArrayList<>();
             String sql = "SELECT * FROM Homestay WHERE Status = 0 ORDER BY CreateAt DESC OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY";
@@ -221,7 +277,7 @@ public class HomestayDAO {
         }
         return null;
     }
-    
+
     public boolean AcceptHomeStay(int homestayId) {
         try {
             List<Homestay> listHomeStay = new ArrayList<>();
