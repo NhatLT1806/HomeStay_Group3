@@ -52,7 +52,7 @@ public class AuthenticationDAO extends DBContext {
                 boolean isActive = rs.getBoolean("IsActive");
                 boolean IsConfirm = rs.getBoolean("IsConfirmEmail");
                 int roleId = rs.getInt("RoleId");
-                var passowrd = rs.getString("Password");
+                String passowrd = rs.getString("Password");
                 byte[] imgData = rs.getBytes("Avatar");
                 String base64Image = null;
                 if (imgData != null) {

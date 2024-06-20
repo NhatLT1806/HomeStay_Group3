@@ -24,19 +24,19 @@
                 </div>
                 <nav class="space-y-2">
                     <a
-                        href="./timeshare-management.html"
+                        href="#"
                         class="block py-2 px-4 rounded text-sm text-white flex items-center bg-blue-600"
                         >
-                        <i class="fas fa-clipboard mr-2"></i>Timeshare Management
+                        <i class="fas fa-clipboard mr-2"></i>Homestay Management
                     </a>
                     <a
-                        href="./user-management.html"
+                        href="GetAllUser"
                         class="block py-2 px-4 rounded text-sm flex items-center hover:bg-gray-700"
                         >
                         <i class="fas fa-user mr-2"></i>User Management
                     </a>
                     <a
-                        href="#"
+                        href="${pageContext.request.contextPath}/auth?action=logout"
                         class="block py-2 px-4 rounded text-sm hover:bg-gray-700 flex items-center"
                         >
                         <i class="fas fa-sign-out-alt mr-2"></i>Logout

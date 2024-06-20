@@ -364,12 +364,13 @@ public class RoomDAO {
             ps = con.prepareStatement(sql);
             ps.setInt(1, requestId);
             int afftecRow = ps.executeUpdate();
-            if (afftecRow > 0) {
-                sql = "UPDATE [Room] SET Status = 3 WHERE RoomId = ?";
-                ps = con.prepareStatement(sql);
-                ps.setInt(1, roomId);
-                return afftecRow > 0;
-            };
+//            if (afftecRow > 0) {
+//                sql = "UPDATE [Room] SET Status = 3 WHERE RoomId = ?";
+//                ps = con.prepareStatement(sql);
+//                ps.setInt(1, roomId);
+//                return afftecRow > 0;
+//            };
+            return afftecRow > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
