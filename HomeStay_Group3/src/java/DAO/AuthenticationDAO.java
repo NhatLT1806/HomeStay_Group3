@@ -105,8 +105,8 @@ public class AuthenticationDAO extends DBContext {
             ps.setString(5, userSignUp.getLastName());
             ps.setString(6, userSignUp.getPhone());
             ps.setBoolean(7, true);
-            // default role is 1 is user
-            ps.setInt(8, 1);
+            // 2 is customer 3 is onwer
+            ps.setInt(8, userSignUp.getRole());
             ps.setBoolean(9, false);
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
@@ -218,6 +218,51 @@ public class AuthenticationDAO extends DBContext {
         }
         return false;
     }
+
+    public User getUserById(int Id) {
+        String sql = "SELECT * FROM [User] WHERE [UserId] = ?";
+        User user = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, Id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                user = new User();
+                int userId = rs.getInt("UserId");
+                String userName = rs.getString("UserName");
+                String firstName = rs.getString("FirstName");
+                String lastName = rs.getString("LastName");
+                String phone = rs.getString("Phone");
+                String email = rs.getString("Email");
+                boolean isActive = rs.getBoolean("IsActive");
+                boolean IsConfirm = rs.getBoolean("IsConfirmEmail");
+                String _password = rs.getString("Password");
+                int roleId = rs.getInt("RoleId");
+                byte[] imgData = rs.getBytes("Avatar");
+                String base64Image = null;
+                if (imgData != null) {
+                    base64Image = Base64.getEncoder().encodeToString(imgData);
+                }
+
+                user.setId(userId);
+                user.setUserName(userName);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setPhone(phone);
+                user.setEmail(email);
+                user.setIsActive(isActive);
+                user.setIsCofirm(IsConfirm);
+                user.setAvatar(base64Image);
+                user.setRoleId(roleId);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Cannot found");
+        }
+        return user;
+    }
+
     public static void main(String[] args) {
         AuthenticationDAO authDAO = new AuthenticationDAO();
         User user = authDAO.Login("datnt123", "Dat123!!");

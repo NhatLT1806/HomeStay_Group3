@@ -30,7 +30,7 @@ public class UserManageDAO {
     }
 
     public List<User> GetAllUser(int index) {
-        String sql = "SELECT * FROM [User] WHERE RoleId != 2 ORDER BY UserId DESC OFFSET ? ROW FETCH NEXT 12 ROWS ONLY";
+        String sql = "SELECT * FROM [User] WHERE RoleId != 1 ORDER BY UserId DESC OFFSET ? ROW FETCH NEXT 12 ROWS ONLY";
         User user = null;
         List<User> listUser = new ArrayList();
         try {
@@ -75,7 +75,7 @@ public class UserManageDAO {
     }
 
     public int GetAllUserTotal() {
-        String sql = "SELECT COUNT(*) FROM [User] WHERE RoleId != 2";
+        String sql = "SELECT COUNT(*) FROM [User] WHERE  RoleId != 1";
         User user = null;
         List<User> listUser = new ArrayList();
         try {
@@ -93,7 +93,7 @@ public class UserManageDAO {
     }
 
     public List<User> GetAllUserByUserName(String search, int index) {
-        String sql = "SELECT * FROM [User] WHERE RoleId != 2 AND UserName LIKE ? ORDER BY UserId DESC OFFSET ? ROW FETCH NEXT 12 ROWS ONLY";
+        String sql = "SELECT * FROM [User] WHERE RoleId != 1 AND UserName LIKE ? ORDER BY UserId DESC OFFSET ? ROW FETCH NEXT 12 ROWS ONLY";
         User user = null;
         List<User> listUser = new ArrayList();
         try {
@@ -140,7 +140,7 @@ public class UserManageDAO {
     }
 
     public int GetAllUserTotalByUserName(String search) {
-        String sql = "SELECT COUNT(*) FROM [User] WHERE RoleId != 2 AND UserName LIKE ?";
+        String sql = "SELECT COUNT(*) FROM [User] WHERE RoleId != 1 AND UserName LIKE ?";
         User user = null;
         List<User> listUser = new ArrayList();
         try {
@@ -206,6 +206,21 @@ public class UserManageDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public int GetAllUserTotalByRoleId(int roleId) {
+        String sql = "SELECT COUNT(*) FROM [User] WHERE RoleId = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, roleId);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public static void main(String[] args) {

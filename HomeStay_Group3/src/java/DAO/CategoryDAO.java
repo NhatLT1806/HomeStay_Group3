@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+/**
+ *
+ * @author Datnt
+ */
 public class CategoryDAO {
 
     private Connection con;
@@ -28,8 +32,8 @@ public class CategoryDAO {
             e.printStackTrace();
         }
     }
-    
-     public List<Category> GetAllCategory() {
+
+    public List<Category> GetAllCategory() {
         try {
             List<Category> listCate = new ArrayList<>();
             String sql = "SELECT * FROM Category";
@@ -37,11 +41,29 @@ public class CategoryDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Category cate = new Category();
-                cate.setId(rs.getInt("Id"));               
+                cate.setId(rs.getInt("Id"));
                 cate.setName(rs.getString("Name"));
                 listCate.add(cate);
             }
             return listCate;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Category getCategoryById(int Id) {
+        try {
+            String sql = "SELECT * FROM Category WHERE Id = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, Id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Category cate = new Category();
+                cate.setId(rs.getInt("Id"));
+                cate.setName(rs.getString("Name"));
+                return cate;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
