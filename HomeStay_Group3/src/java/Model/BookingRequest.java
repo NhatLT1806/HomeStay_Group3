@@ -20,7 +20,8 @@ import lombok.Setter;
 public class BookingRequest {
     private int RequetsId;
     private String CreateAt;
-    private String RoomId;
+    private int RoomId;
     private int BookBy;
     private int Status;
+    private String note;
 }

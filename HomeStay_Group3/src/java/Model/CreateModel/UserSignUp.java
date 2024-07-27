@@ -28,4 +28,5 @@ public class UserSignUp {
     public String Email;
     public boolean IsActive;
     public Date CreateAt;
+    public int Role;
 }

@@ -6,9 +6,12 @@ package Controller;
 
 import DAO.AuthenticationDAO;
 import DAO.HomestayDAO;
+import DAO.NotificationDAO;
+import DAO.UserWalletDAO;
 import Model.CreateModel.UserSignUp;
 import Model.Homestay;
 import Model.User;
+import Model.UserWallet;
 import Service.MailService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -48,6 +51,9 @@ public class AuthenticationController extends HttpServlet {
                 break;
             case "logout":
                 session.removeAttribute("USER");
+                session.setAttribute("WALLET", 0);
+                session.setAttribute("NOTIFY", 0);
+                break;
         }
         request.getRequestDispatcher(url).forward(request, response);
     }
@@ -86,7 +92,7 @@ public class AuthenticationController extends HttpServlet {
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
 
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession();
             AuthenticationDAO authDAO = new AuthenticationDAO();
             User userLogedIn = authDAO.Login(userName, password);
             if (userLogedIn != null) {
@@ -94,14 +100,14 @@ public class AuthenticationController extends HttpServlet {
                     // Login thanh cong
                     session.setAttribute("USER", userLogedIn);
                     session.setAttribute("EMAIL", userLogedIn.getEmail());
-                    // User 
+                    // User admin
                     if (userLogedIn.getRoleId() == 1) {
-
+                        url = "admin/DashboardController";
+                        response.sendRedirect(url);
+                        // nguoi thue va chu nha
+                    } else if (userLogedIn.getRoleId() == 2 || userLogedIn.getRoleId() == 3) {
                         url = HOME_PAGE;
                         // Admin
-                    } else if (userLogedIn.getRoleId() == 2) {
-                        url = "admin/GetAllUser";
-                        response.sendRedirect(url);
                     }
                 } else if (!userLogedIn.isIsActive()) {
                     request.setAttribute("ERRORMESSAGE", "Tài khoản của bạn bị vô hiệu hóa. Vui lòng liên hệ quản trị viên!");
@@ -128,12 +134,13 @@ public class AuthenticationController extends HttpServlet {
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String phone = request.getParameter("phone");
+            String roleS = request.getParameter("role");
 
+            int role = Integer.parseInt(roleS);
             String passwordHashed = EncryptString.hashPassword(password);
             // create create modal to signup
-
             UserSignUp userSignUp = new UserSignUp();
-
+            userSignUp.setRole(role);
             userSignUp.setUserName(userName);
             userSignUp.setPassword(passwordHashed);
             userSignUp.setEmail(email);
@@ -187,11 +194,16 @@ public class AuthenticationController extends HttpServlet {
         HttpSession session = request.getSession(true);
         String indexS = request.getParameter("index");
         String searchS = request.getParameter("search");
+        String places = request.getParameter("place");
+
         if (indexS == null) {
             indexS = "1";
         }
         if (searchS == null) {
             searchS = "";
+        }
+        if (places == null) {
+            places = "";
         }
         int index = Integer.parseInt(indexS);
 
@@ -203,11 +215,31 @@ public class AuthenticationController extends HttpServlet {
             total = homestayDAO.getAll_HomePageSearchTotal(searchS);
             listHomeStay = homestayDAO.getAll_HomePageSearch(index, searchS);
             request.setAttribute("search", searchS);
+        } else if (places != "") {
+            listHomeStay = homestayDAO.getAll_HomePageSearchAddress(places, index);
+            total = homestayDAO.getAll_HomePageSearchAddressTotal(places);
+            request.setAttribute("place", places);
         }
         int lastPage = total / 12;
         if (total % 12 != 0) {
             lastPage++;
         }
+        if (session != null && session.getAttribute("USER") != null) {
+            User userLogin = (User) session.getAttribute("USER");
+            UserWalletDAO userWalletDAO = new UserWalletDAO();
+            UserWallet userWallet = userWalletDAO.getUserWalletById(userLogin.getId());
+            if (userWallet != null) {
+                session.setAttribute("WALLET", userWallet.getAmmount());
+            }
+
+            NotificationDAO notiDAO = new NotificationDAO();
+            int notifyTotal = notiDAO.getTotalNewNotificationByUserId(userLogin.getId());
+            session.setAttribute("NOTIFY", notifyTotal);
+
+        } else {
+            session.setAttribute("WALLET", 0);
+        }
+
         request.setAttribute("endP", lastPage);
         request.setAttribute("selectedPage", index);
         request.setAttribute("HOMESTAY", listHomeStay);

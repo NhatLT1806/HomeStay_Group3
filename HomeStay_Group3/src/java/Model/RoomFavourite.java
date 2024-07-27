@@ -9,19 +9,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- *
- * @author Datnt
- */
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Feedback {
+public class RoomFavourite {
     private int Id;
-    private String Description;
-    private int UserId;
-    private int HomestayId;
+    private int RoomId;
     private String CreateAt;
-    private String UpdateAt;
 }

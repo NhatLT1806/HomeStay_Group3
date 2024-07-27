@@ -26,7 +26,7 @@ public class VnpayConfig {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     // payment thanh cong chuyen ve trang transition history
-    public static String vnp_ReturnUrl = "http://localhost:9999/TimeShare/PaymentSuccessfullyController";
+    public static String vnp_ReturnUrl = "http://localhost:8080/TimeShare/PaymentSuccessfullyController";
     public static String vnp_TmnCode = "B9IX8M8I";
     public static String secretKey = "DU788Y9NMNXU9B8NXJ6QA0QPCC9J4P3P";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";

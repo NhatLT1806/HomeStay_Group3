@@ -24,7 +24,7 @@ public class DBContext {
         String dbName = "HomeStayManagement";
         String portNumber = "1433";
         String userID = "sa";
-        String password = "1";
+        String password = "123";
 
         String url = "jdbc:sqlserver://" + serverName + ":" + portNumber
                 + ";databaseName=" + dbName;//+"; integratedSecurity=true";
