@@ -100,7 +100,7 @@ public class AuthenticationController extends HttpServlet {
                         url = HOME_PAGE;
                         // Admin
                     } else if (userLogedIn.getRoleId() == 2) {
-                        url = "manage-homestay";
+                        url = "admin/GetAllUser";
                         response.sendRedirect(url);
                     }
                 } else if (!userLogedIn.isIsActive()) {

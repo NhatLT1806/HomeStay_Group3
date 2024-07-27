@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ManageHomestayController extends HttpServlet {
 
-    private static String HOMESTAY_MANAGE_PAGE = "views/admin/manage-homestay.jsp";
+    private static String HOMESTAY_MANAGE_PAGE = "/views/admin/manage-homestay.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

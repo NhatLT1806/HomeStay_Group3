@@ -19,8 +19,8 @@ import java.util.Properties;
  */
 public class MailService {
     
-    public static final String username = "nhatlthe180545@fpt.edu.vn";
-    public static final String password = "vykb ugwi tfau wbbv";
+    public static final String username = "huynqhe176065@fpt.edu.vn";
+    public static final String password = "puia enzd rylk touo";
 
     public static void sendOtpToMail(String email, String otp) {
 
