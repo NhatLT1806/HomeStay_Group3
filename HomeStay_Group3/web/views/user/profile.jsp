@@ -15,7 +15,7 @@
         <!-- Google Web Fonts -->
     </head>
     <style>
-         body {
+        body {
             background: url('${pageContext.request.contextPath}/images/background.jpg') no-repeat ;
             background-size: cover;
             background-origin: border-box   ;
@@ -65,6 +65,12 @@
                             </button>
                         </a>
 
+                        <a href="profile?action=wallet-history">
+                            <button class="bg-green-500 text-white text-lg px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50" style="background-image: linear-gradient(to right top,#45af2a,#3ba023,#30901c,#268215,#1b730d,#1b730d,#1b730d,#1b730d,#268215,#30901c,#3ba023,#45af2a); margin:10px auto">
+                                Xem lịch sử giao dịch
+                            </button>
+                        </a>
+
                         <a href="profile?action=forgotPassword">
                             <button class="bg-green-500 text-white text-lg px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50" style="background-image: linear-gradient(to right top,#45af2a,#3ba023,#30901c,#268215,#1b730d,#1b730d,#1b730d,#1b730d,#268215,#30901c,#3ba023,#45af2a); margin:10px auto">
                                 Quên mật khẩu
@@ -107,7 +113,7 @@
                 </div>
             </div>
         </div>
-          <jsp:include page="footer.jsp" />
+        <jsp:include page="footer.jsp" />
 
     </body>
 

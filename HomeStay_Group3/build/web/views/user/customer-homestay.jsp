@@ -43,42 +43,24 @@
         </style>
     </head>
     <body>
-        <jsp:include page="header.jsp" />\
+        <jsp:include page="header.jsp" />
 
         <div style="display: flex; align-items: center; justify-content: center">
-            <span
-                class="ant-input-group-wrapper ant-input-group-wrapper-outlined css-dev-only-do-not-override-1k979oh ant-input-search ant-input-search-with-button"
-                style="max-width: 700px; margin-top: 2%"
-                ><span
-                    class="ant-input-wrapper ant-input-group css-dev-only-do-not-override-1k979oh"
-                    ><input
-                        placeholder="Search with title..."
-                        class="ant-input css-dev-only-do-not-override-1k979oh ant-input-outlined"
-                        type="text"
-                        value="" /><span class="ant-input-group-addon"
-                        ><button
-                            type="button"
-                            class="ant-btn css-dev-only-do-not-override-1k979oh ant-btn-primary ant-input-search-button"
-                            >
-                            <span class="ant-btn-icon"
-                                  ><span
-                                    role="img"
-                                    aria-label="search"
-                                    class="anticon anticon-search"
-                                    ><svg
-                                        viewBox="64 64 896 896"
-                                        focusable="false"
-                                        data-icon="search"
-                                        width="1em"
-                                        height="1em"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                        >
-                                    <path
-                                        d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
-                                        ></path></svg></span
-                                ></span></button></span></span
-                ></span>
+            <div style="display: flex; justify-content: center; align-content: center">
+                <div style="margin-right: 15px">
+                    Tìm kiếm: 
+                </div>
+                <form action="homestay" style="display: flex">
+                    <input type="hidden" value="view-own-homestay" name="action"/>
+                    <select name="status" class="form-select" aria-label="Default select example">
+                        <option  value="" selected>Tất cả</option>
+                        <option   ${status == 0 ? 'selected' : ''} value="0">Đang chờ phê duyệt</option>
+                        <option   ${status == 1 ? 'selected' : ''} value="1">Duyệt thành công</option>
+                        <option   ${status == 2 ? 'selected' : ''}  value="2">Bị từ chối</option>
+                    </select>
+                    <button style="margin-left: 15px" type="submit" class="btn btn-success">Filter</button>
+                </form>
+            </div>
         </div>
         <div
             class="timeshare-owner-management"
@@ -129,33 +111,29 @@
                                 <!-- watting for acppet -->
                                 <c:if test="${h.status == 0}">
                                     <div style="background-color: rgb(254, 182, 0); width: fit-content"  >
-                                        <h4>Waiting for the accept</h4>
+                                        <h4>Đang đợi phê duyệt</h4>
                                     </div>
                                 </c:if>
                                 <!-- acppet -->
                                 <c:if test="${h.status == 1}">
                                     <div style="background-color: #0582ae; width: fit-content">
-                                        <h4 style="color: white">Waiting for book</h4>
+                                        <h4 style="color: white">Sẵn sàng cho thuê</h4>
                                     </div>
                                 </c:if>
                                 <!-- watting for decline -->
                                 <c:if test="${h.status == 2}">
                                     <div   style="background-color: rgb(244, 67, 54); width: fit-content" >
-                                        <h4>This is decline from the admin</h4>
+                                        <h4>Bị từ chối</h4>
                                     </div>
                                 </c:if>
-                                <!-- have offer -->
-                                <c:if test="${h.status == 3}">
-                                    <button class="owner-management-button">SEE THE ORDER</button>
-                                </c:if>
-                                <!-- Booked -->
                                 <c:if test="${h.status == 4}">
-                                    <div style="background-color: green; width: fit-content">
-                                        <h4 style="color: white">This time share is booked</h4>
+                                    <div   style="background-color: #0582ae; width: fit-content" >
+                                        <h4>Đã ẩn</h4>
                                     </div>
                                 </c:if>
+                             
 
-                                <a style="text-decoration: none; padding: 10px; width: 100px; border-radius: 10px; display: block; color: #fff;background: #1677ff;" class="btn flex" href="homestay?action=homestay-detail&homestayId=${h.homestayId}">Details</a>
+                                <a style="text-decoration: none; padding: 10px; width: 100px; border-radius: 10px; display: block; color: #fff;background: #1677ff;" class="btn flex" href="homestay?action=view-detail-homestay&homestayId=${h.homestayId}">Chi tiết</a>
                             </div>
                         </div>
                     </div>
@@ -167,18 +145,18 @@
                         <a class="page-link" href="#">«</a>
                     </c:when>
                     <c:otherwise>
-                        <a class="page-link" href="league?action=listLeague&search=${search}&index=${selectedPage-1}">«</a>
+                        <a class="page-link" href="homestay?action=view-own-homestay&status=${status}&search=${search}&index=${selectedPage-1}">«</a>
                     </c:otherwise>
                 </c:choose>
                 <c:forEach var="i" begin="1" end="${endP}">
-                    <a class="page-link ${i == selectedPage ? "active" : "" }" href="league?action=listLeague&search=${search}&index=${i}">${i}</a> 
+                    <a class="page-link ${i == selectedPage ? "active" : "" }" href="homestay?action=view-own-homestay&status=${status}&search=${search}&index=${i}">${i}</a> 
                 </c:forEach>
                 <c:choose>
                     <c:when test ="${selectedPage >= endP}">
                         <a class="page-link" href="#">»</a>
                     </c:when>
                     <c:otherwise>
-                        <a class="page-link" href="league?action=listLeague&search=${search}&index=${selectedPage+1}">»</a>
+                        <a class="page-link" href="homestay?action=view-own-homestay&status=${status}&search=${search}&index=${selectedPage+1}">»</a>
                     </c:otherwise>
                 </c:choose>
             </div>

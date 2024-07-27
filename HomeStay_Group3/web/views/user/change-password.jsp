@@ -72,7 +72,7 @@
                                 <button type="submit" class="inline-block align-baseline font-bold text-sm text-gray-500 hover:text-gray-800 border border-gray-300 py-2 px-4 rounded hover:border-gray-500 focus:outline-none focus:border-gray-500" type="button" >
                                     Lưu
                                 </button>
-                                <a href="profile1">
+                                <a href="profile?action=view">
                                     <button class="inline-block align-baseline font-bold text-sm text-gray-500 hover:text-gray-800 border border-gray-300 py-2 px-4 rounded hover:border-gray-500 focus:outline-none focus:border-gray-500" type="button" >
                                         Hủy
                                     </button>
@@ -101,11 +101,17 @@
 
                             <script>
                                 const passwordInput = document.getElementById('new-password');
-                                const passwordConfirmInput = document.getElementById('confirm-password');
+                                const oldPassword = document.getElementById('old-password');
+                                const passwordConfirm = document.getElementById('confirm-password');
+                                const passwordConfirmMessage = document.getElementById('password-confirm-message');
+                                const updateMessage = document.getElementById('update-message');
                                 const passwordMessage = document.getElementById('password-message');
                                 const submitButton = document.getElementById('btn-submit');
 
-                                const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!"#$%&'*+,-\./:;<=>?@\[\]^_`{|}~])[^\s]{8,}$/;
+
+                                const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!"#$%&'*+,-./:;<=>?@[\\\]^_`{|}~])[^\s]{8,}$/;
+
+
 
                                 passwordInput.addEventListener('keyup', (event) => {
                                     const password = event.target.value;
@@ -114,20 +120,34 @@
 
                                     if (!passwordRegex.test(password)) {
                                         isValid = false;
-                                        passwordMessage.textContent = 'Mật khẩu phải chứa ít nhất 8 kí tự và ít nhất một kí tự hoa,1 kí tự thường, 1 số, và 1 kí tự đặc biệt.';
+                                        passwordMessage.textContent = 'Password must contain at least 8 characters and at least one uppercase letter, one lowercase letter, one number, and one special character.';
                                     }
+
+                                    if (oldPassword.value.trim() === "") {
+                                        isValid = false;
+                                    }
+
                                     submitButton.disabled = !isValid;
+
                                 });
 
-                                passwordConfirmInput.addEventListener('keyup', (event) => {
+
+                                passwordConfirm.addEventListener('keyup', (event) => {
                                     const password = event.target.value;
                                     let isValid = true;
                                     passwordMessage.textContent = '';
 
-                                    if (!(password == passwordInput.value)) {
+                                    if (!passwordRegex.test(password)) {
                                         isValid = false;
-                                        passwordMessage.textContent = 'Mật khẩu không khớp với mật khẩu bạn đăng kí';
+                                        passwordMessage.textContent = 'Password must contain at least 8 characters and at least one uppercase letter, one lowercase letter, one number, and one special character.';
+                                    } else if (!(password == passwordInput.value)) {
+                                        isValid = false;
+                                        passwordMessage.textContent = 'Password does not match the password you registered with.';
                                     }
+                                    if (oldPassword.value.trim() === "") {
+                                        isValid = false;
+                                    }
+
                                     submitButton.disabled = !isValid;
                                 });
                             </script>

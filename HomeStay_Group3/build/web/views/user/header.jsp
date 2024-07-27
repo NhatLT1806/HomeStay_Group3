@@ -6,8 +6,57 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+            />
         <title>Document</title>
+        <style>
+            .dropbtn {
+                background-color: #3498DB;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropbtn:hover, .dropbtn:focus {
+                background-color: #2980B9;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                overflow: auto;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown a:hover {
+                background-color: #ddd;
+            }
+
+            .show {
+                display: block;
+            }
+        </style>
     </head>
     <body>
         <section class="navBarSection">
@@ -15,43 +64,70 @@
                 <div class="logoDiv">
                     <a class="navbarLogo flex" href="auth"
                        ><img
-                            src="${pageContext.request.contextPath}/images/logo.jpg"
+                            src="${pageContext.request.contextPath}/images/Logo.png" style="height: 100px; width: 100px; border-radius: unset"
                             alt=""
                             class="logo"
                             />
-                        <h1>Home Stay</h1></a
+                        <h1>HomeHaven</h1></a
                     >
                 </div>
                 <div class="navBar">
                     <ul class="navbarLists flex">
                         <li class="navbarItem"><a class="nav-link" href="auth">Home</a></li>
-                        <li class="navbarItem">
-                            <a class="nav-link" href="homestay?action=post">Post Home Stay</a>
-                        </li>
-                        <li class="navbarItem">
-                            <a class="nav-link" href="homestay?action=view-own-homestay"
-                               >Manage Homestay</a
-                            >
-                        </li>
-                        <li class="navbarItem">
-                            <a class="nav-link" href="book?action=view-room-booking"
-                               >Manage Booking</a
-                            >
-                        </li>
-                        <li class="navbarItem">
-                            <a class="nav-link" href="book?action=view-booking-history"
-                               >Booking History</a
-                            >
-                        </li>
+                        <!-- Button trigger modal -->
+
+                        <c:if test="${USER != null && USER.roleId == 3}">
+                            <a href="profile?action=send-order">Lượt tạo nhà: ${WALLET}</a>
+                        </c:if>
+
+                        <c:if test="${USER.roleId == 3}">
+
+                            <li class="navbarItem">
+                                <a class="nav-link" href="homestay?action=post">Tạo nhà</a>
+                            </li>
+                            <li class="navbarItem">
+                                <a class="nav-link" href="homestay?action=view-own-homestay"
+                                   >Quản lí nhà</a
+                                >
+                            </li>
+                            <li class="navbarItem">
+                                <a class="nav-link" href="book?action=view-room-booking"
+                                   >Danh sách yêu cầu</a
+                                >
+                            </li>
+                        </c:if>
+                        <c:if test="${USER.roleId == 2}">
+                            <li class="navbarItem">
+                                <a class="nav-link" href="room?action=view-favourite-room"
+                                   >Phòng yêu thích</a
+                                >
+                            </li>
+                            <li class="navbarItem">
+                                <a class="nav-link" href="book?action=view-booking-history"
+                                   >Yêu cầu đang gửi</a
+                                >
+                            </li>
+
+                        </c:if>
+                        <a href="NotificationController?action=view"  class="btn btn-secondary position-relative">
+                            Thông báo
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                ${NOTIFY}
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </a>
                         <c:choose>
                             <c:when test="${USER != null}">
-                                <li class="btn" style="display: flex; align-items: center; cursor: pointer" >
-                                    <img alt="avatar" src="${pageContext.request.contextPath}/images/avatar.png" style="width: 32px; height: 32px; border-radius: 50%"  />&nbsp;
-                                    <button type="button" id="dropdownMenuButton1" class="btn dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(0, 0, 0)">${USER.firstName} ${USER.lastName}</button>
+                                <li  style="display: flex; align-items: center; cursor: pointer">
+
                                 </li>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <a class="dropdown-item " href="profile?action=view">Profile</a>
-                                    <a class="dropdown-item " href="auth?action=logout">Logout</a>
+                                <div class="dropdown">
+                                    <button onclick="myFunction()" class="dropbtn"> ${USER.firstName} ${USER.lastName}
+                                    </button>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <a class="dropdown-item " href="profile?action=view">Profile</a>
+                                        <a class="dropdown-item " href="auth?action=logout">Logout</a>
+                                    </div>
                                 </div>
                             </c:when>
                             <c:otherwise>
@@ -105,6 +181,31 @@
                     </div>
                 </div>
             </header>
+
+
+
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         </section>
     </body>
+    <script>
+                                        /* When the user clicks on the button, 
+                                         toggle between hiding and showing the dropdown content */
+                                        function myFunction() {
+                                            document.getElementById("myDropdown").classList.toggle("show");
+                                        }
+
+// Close the dropdown if the user clicks outside of it
+                                        window.onclick = function (event) {
+                                            if (!event.target.matches('.dropbtn')) {
+                                                var dropdowns = document.getElementsByClassName("dropdown-content");
+                                                var i;
+                                                for (i = 0; i < dropdowns.length; i++) {
+                                                    var openDropdown = dropdowns[i];
+                                                    if (openDropdown.classList.contains('show')) {
+                                                        openDropdown.classList.remove('show');
+                                                    }
+                                                }
+                                            }
+                                        }
+    </script>
 </html>

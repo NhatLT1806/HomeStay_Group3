@@ -16,11 +16,11 @@
             <div class="logoDiv">
               <a class="navbarLogo flex" href="/"
                 ><img
-                  src="${pageContext.request.contextPath}/images/logo.jpg"
+                  src="${pageContext.request.contextPath}/images/Logo.png"
                   alt=""
                   class="logo"
                 />
-                <h1>Home Stay</h1></a
+                <h1>HomeHaven</h1></a
               >
             </div>
             <div
@@ -121,8 +121,8 @@
               data-aos-duration="6000"
               class="linkGroup aos-init aos-animate"
             >
-              <span class="groupTitle">TIMESHARES FOR SALE</span>
-              <li class="footerList flex">Find Timeshares for Sale</li>
+              <span class="groupTitle">Contact for supports</span>
+              <li class="footerList flex">homehaven@gmail.com</li>
             </div>
           </div>
           <div
