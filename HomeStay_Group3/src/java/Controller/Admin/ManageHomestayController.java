@@ -5,6 +5,7 @@
 package Controller.Admin;
 
 import DAO.HomestayDAO;
+import DAO.NotificationDAO;
 import Model.Homestay;
 import Model.User;
 import jakarta.servlet.ServletException;
@@ -16,9 +17,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class ManageHomestayController extends HttpServlet {
-
+    
     private static String HOMESTAY_MANAGE_PAGE = "/views/admin/manage-homestay.jsp";
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,18 +47,18 @@ public class ManageHomestayController extends HttpServlet {
             } else {
                 url = "views/common/sign-in.jsp";
                 request.getRequestDispatcher(url).forward(request, response);
-
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
-
+    
     @Override
     public String getServletInfo() {
         return "Short description";
@@ -77,25 +78,33 @@ public class ManageHomestayController extends HttpServlet {
             e.printStackTrace();
         }
     }
-
+    
     private void accpetHomestay(HttpServletRequest request, HttpServletResponse response) {
         try {
             String ids = request.getParameter("id");
+            String ownerIds = request.getParameter("userId");
             int id = Integer.parseInt(ids);
+            int ownerId = Integer.parseInt(ownerIds);
+            
             HomestayDAO homestayDAO = new HomestayDAO();
-            boolean result = homestayDAO.AcceptHomeStay(id);
+            boolean result = homestayDAO.AcceptHomeStay(id, ownerId);
             if (result) {
+                Homestay _homestay = homestayDAO.GetHomestayById(id);
+                NotificationDAO notiDAO = new NotificationDAO();
+                String title = "THÊM NHÀ";
+                String _content = "Yêu cầu thêm nhà " + _homestay.getName() + " của bạn đã được  phê duyệt!";
+                notiDAO.createNotification(ownerId, title, _content);
                 request.setAttribute("MESSAGE", "Đã cho phép homestay xuất hiện ở homepage");
+                
             } else {
                 request.setAttribute("ERROR", "Có lỗi xảy ra");
             }
-            request.getRequestDispatcher(HOMESTAY_MANAGE_PAGE).forward(request, response);
+            homeStayManagement(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
+    
     private void rejectHomettay(HttpServletRequest request, HttpServletResponse response) {
         try {
             String ids = request.getParameter("id");
@@ -104,13 +113,18 @@ public class ManageHomestayController extends HttpServlet {
             boolean result = homestayDAO.RejectHomeStay(id);
             if (result) {
                 request.setAttribute("MESSAGE", "Đã từ chối homestay được xuất hiện ở homepage");
+                Homestay _homestay = homestayDAO.GetHomestayById(id);
+                NotificationDAO notiDAO = new NotificationDAO();
+                String title = "THÊM NHÀ";
+                String _content = "Yêu cầu thêm nhà " + _homestay.getName() + " của bạn đã được  phê duyệt!";
+                notiDAO.createNotification(_homestay.getUserId(), title, _content);
             } else {
                 request.setAttribute("ERROR", "Có lỗi xảy ra");
             }
-            request.getRequestDispatcher(HOMESTAY_MANAGE_PAGE).forward(request, response);
+            homeStayManagement(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    
 }
