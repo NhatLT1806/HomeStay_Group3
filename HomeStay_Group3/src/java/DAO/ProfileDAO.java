@@ -22,7 +22,7 @@ import ultis.EncryptString;
 
 /**
  *
- * @author Datnt
+ * @author
  */
 public class ProfileDAO extends DBContext {
 
@@ -71,9 +71,11 @@ public class ProfileDAO extends DBContext {
                 ps.setString(2, user.getLastName());
                 ps.setString(3, user.getPhone());
                 ps.setString(4, user.getEmail());
-
-                LocalDateTime now = LocalDateTime.now();
-                ps.setString(5, now.toString());
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                String currentDate = dateFormat.format(date);
+     
+                ps.setString(5, currentDate);
                 ps.setInt(6, user.getId());
             }
 
@@ -111,8 +113,8 @@ public class ProfileDAO extends DBContext {
     }
 
     public boolean changePassword(User user, String newPassword) {
-        String password = EncryptString.hashPassword(newPassword);     
-        String userPassword =   EncryptString.hashPassword(user.getPassword());
+        String password = EncryptString.hashPassword(newPassword);
+        String userPassword = EncryptString.hashPassword(user.getPassword());
 
         String sql = "SELECT * FROM [User] WHERE [UserName] = ? AND [Password] = ?";
         try {
