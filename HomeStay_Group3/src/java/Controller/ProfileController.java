@@ -6,6 +6,8 @@ package Controller;
 
 import DAO.AuthenticationDAO;
 import DAO.ProfileDAO;
+import DAO.UserWalletDAO;
+import Model.TransitionHistory;
 import Model.User;
 import Service.MailService;
 import Service.OtpService;
@@ -17,8 +19,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.IOException;
+import java.util.List;
 import ultis.EncryptString;
-
 
 @MultipartConfig
 public class ProfileController extends HttpServlet {
@@ -48,7 +50,12 @@ public class ProfileController extends HttpServlet {
                         forgotPassword(request, response);
                         url = "views/user/send-mail-noti.jsp";
                         break;
-
+                    case "send-order":
+                        SendOrder(request, response);
+                        break;
+                    case "wallet-history":
+                        ViewWalletHistory(request, response);
+                        break;
                 }
             } else {
                 // trang login
@@ -73,7 +80,6 @@ public class ProfileController extends HttpServlet {
                 case "changePassword":
                     changePassword(request, response);
                     break;
-
             }
         } else {
             response.sendRedirect("views/common/sign-in.jsp");
@@ -190,5 +196,48 @@ public class ProfileController extends HttpServlet {
 
     private void confirmOTP(HttpServletRequest request, HttpServletResponse response) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void SendOrder(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String url = "views/user/send-order.jsp";
+            HttpSession session = request.getSession(false);
+            User user = (User) session.getAttribute("USER");
+            request.setAttribute("USER", user);
+            request.getRequestDispatcher(url).forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void ViewWalletHistory(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String indexS = request.getParameter("index");
+            String searchS = request.getParameter("search");
+            if (indexS == null) {
+                indexS = "1";
+            }
+            int index = Integer.parseInt(indexS);
+            String url = "views/user/wallet-history.jsp";
+            HttpSession session = request.getSession(false);
+            User user = (User) session.getAttribute("USER");
+            request.setAttribute("USER", user);
+            UserWalletDAO userWalletDAO = new UserWalletDAO();
+            int walletId = userWalletDAO.getUserWalletByUserId(user.getId()).getId();
+            int total = userWalletDAO.getWalletHistoryTotal(walletId);
+            List<TransitionHistory> listWalletHistory = userWalletDAO.getWalletHistory(walletId, index);
+            int lastPage = total / 8;
+            if (total % 8 != 0) {
+                lastPage++;
+            }
+            request.setAttribute("endP", lastPage);
+            request.setAttribute("selectedPage", index);
+            if(listWalletHistory.size() > 0) {
+                   request.setAttribute("WALLET_HISTORY", listWalletHistory);
+            }
+            request.getRequestDispatcher(url).forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
