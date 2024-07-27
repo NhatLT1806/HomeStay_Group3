@@ -203,7 +203,6 @@ public class AuthenticationController extends HttpServlet {
             total = homestayDAO.getAll_HomePageSearchTotal(searchS);
             listHomeStay = homestayDAO.getAll_HomePageSearch(index, searchS);
             request.setAttribute("search", searchS);
-            //nnnnn
         }
         int lastPage = total / 12;
         if (total % 12 != 0) {
