@@ -10,6 +10,12 @@
             rel="stylesheet"
             />
         <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+            />
+        <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
             />
@@ -67,21 +73,111 @@
                                 class="w-full"
                                 />
                             <div class="p-4">
-                                <h3 class="text-xl font-bold">${homestay.name}</h3>
+                                <h3 class="text-xl font-bold">
+                                    Name: ${homestay.name}
+                                </h3>
                                 <p class="text-gray-600">
-                                   ${homestay.description}
+                                    Owner: ${homestay.user.firstName} ${homestay.user.lastName}
+                                </p>
+
+                                <p class="text-gray-600">
+                                    Address: ${homestay.address}
                                 </p>
                             </div>
                             <div class="flex justify-between p-4">
-                                <a href="manage-homestay?action=accept&id=${homestay.homestayId}" class="text-green-500">
+
+
+                                <a  data-bs-toggle="modal" data-bs-target="#accepte-${homestay.homestayId}" aria-hidden="true"
+                                    class="text-green-500" style="cursor: pointer">
                                     <i class="fas fa-check-circle text-2xl"></i>
                                 </a>
-                                <a  href="manage-homestay?action=reject&id=${homestay.homestayId}" class="text-red-500">
+
+                                <div class="modal fade" id="accepte-${homestay.homestayId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" >Bạn có chắc cho phép nhà trọ này xuất hiện ở homepage</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Hành động này sẽ cho phép nhà trọ này xuất hiện ở homepage. Bạn sẽ không thể hoàn tác hành động trên.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a class="btn btn-success"  href="manage-homestay?action=accept&id=${homestay.homestayId}&userId=${homestay.userId}" >Xác nhận</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+
+
+                                <a  data-bs-toggle="modal" data-bs-target="#reject-${homestay.homestayId}" aria-hidden="true"
+                                    class="text-red-500" style="cursor: pointer">
                                     <i class="fas fa-times-circle text-2xl"></i>
                                 </a>
-                                <a class="text-blue-500">
+
+                                <div class="modal fade" id="reject-${homestay.homestayId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" >Bạn có chắc không đồng ý nhà trọ này xuất hiện ở homepage</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Hành động này sẽ  KHÔNG cho phép nhà trọ này xuất hiện ở homepage. Bạn sẽ không thể hoàn tác hành động trên.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a class="btn btn-danger"  href="manage-homestay?action=accept&id=${homestay.homestayId}&userId=${homestay.userId}" >Xác nhận</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+
+
+                                <a class="text-blue-500" style="cursor: pointer"  data-bs-toggle="modal" data-bs-target="#info-${homestay.homestayId}" aria-hidden="true">
                                     <i class="fas fa-info-circle text-2xl"></i>
                                 </a>
+
+
+                                <div class="modal fade" id="info-${homestay.homestayId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" >Thông tin nhà trọ</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div>
+                                                    <p class="timeshare-details-title">
+                                                        <b>Tên nhà  </b>${homestay.name}
+                                                    <p>
+                                                    <p >
+                                                        <b>Địa chỉ: </b> ${homestay.address} 
+                                                    </p>
+                                                    <p >
+                                                        <b>Mô tả: </b> ${homestay.description} 
+                                                    </p>
+                                                    <p >
+                                                        <b>Chủ nhà </b>  ${homestay.user.firstName}   ${homestay.user.lastName} 
+                                                    </p>
+                                                    <p >
+                                                        <b>Email:  </b>  ${homestay.user.email}
+                                                    </p>
+                                                    <p >
+                                                        <b>Phone:  </b>  ${homestay.user.phone}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+
+
+
                             </div>
                         </div>
                     </c:forEach>
@@ -121,4 +217,9 @@
             </div>
         </div>
     </body>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
+    ></script>
 </html>
