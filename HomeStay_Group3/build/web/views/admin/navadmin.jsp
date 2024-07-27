@@ -31,20 +31,25 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
+                        <a class="nav-link active" aria-current="page" href="DashboardController">
                             Dashboard
                         </a>
                     </li>
-                    
-                      <li class="nav-item">
+
+                    <li class="nav-item">
                         <a class="nav-link" href="GetAllUser">
                             User Management
                         </a>
                     </li>
-                    
-                       <li class="nav-item">
+
+                    <li class="nav-item">
                         <a class="nav-link" href="manage-homestay">
                             Homestay Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="UserWalletManageController">
+                            Wallet Management
                         </a>
                     </li>
                 </ul>

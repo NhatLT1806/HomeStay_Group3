@@ -348,7 +348,6 @@ dl {
 
 #rentalAgreement {
   flex: 1; /* Phần văn bản sẽ mở rộng để chiếm hết không gian có sẵn */
-  white-space: nowrap;
 }
 
 .nowrap {

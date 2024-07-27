@@ -36,6 +36,34 @@
         <servlet-name>ChangeUserStatusController</servlet-name>
         <servlet-class>Controller.Admin.ChangeUserStatusController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContractController</servlet-name>
+        <servlet-class>Controller.ContractController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentRoomController</servlet-name>
+        <servlet-class>Controller.CommentRoomController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SendOrderWalletController</servlet-name>
+        <servlet-class>Controller.SendOrderWalletController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserWalletManageController</servlet-name>
+        <servlet-class>Controller.Admin.UserWalletManageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DashboardController</servlet-name>
+        <servlet-class>Controller.Admin.DashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentSuccessfullyController</servlet-name>
+        <servlet-class>Controller.PaymentSuccessfullyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VnpayRequestController</servlet-name>
+        <servlet-class>Controller.VnpayRequestController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AuthenticationController</servlet-name>
         <url-pattern>/auth</url-pattern>
@@ -71,5 +99,33 @@
     <servlet-mapping>
         <servlet-name>ChangeUserStatusController</servlet-name>
         <url-pattern>/admin/ChangeUserStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContractController</servlet-name>
+        <url-pattern>/contract</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentRoomController</servlet-name>
+        <url-pattern>/CommentRoomController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendOrderWalletController</servlet-name>
+        <url-pattern>/SendOrderWalletController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserWalletManageController</servlet-name>
+        <url-pattern>/admin/UserWalletManageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardController</servlet-name>
+        <url-pattern>/admin/DashboardController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentSuccessfullyController</servlet-name>
+        <url-pattern>/PaymentSuccessfullyController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VnpayRequestController</servlet-name>
+        <url-pattern>/VnpayRequestController</url-pattern>
     </servlet-mapping>
 </web-app>
