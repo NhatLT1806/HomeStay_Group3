@@ -15,20 +15,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class BookingVM {
-    private int RequestId;
+public class CommentViewModel {
+    private int Id;
+    private int PostId;
+    private String Content;   
+    private int UserId;
+    private String UserName;
+    private String Avatar;
     private String CreateAt;
-    private int Status;
-    private String RoomName;
-    private float Price;
-    private int RoomId;
-    private int HomestayId;
-    private String RoomImage;
-    private String BookedByUserName;
-    private String BookedByEmail;
-    private String BookedByPhone;   
-    private String OwnerPhone;
-    private String OwnerName;
-    private String OwnerEmail;
-
 }
